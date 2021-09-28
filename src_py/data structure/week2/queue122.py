@@ -1,0 +1,53 @@
+""" Note we have called this module queue122.py
+to avoid a clash with the inbuilt module called queue.
+"""
+import doctest
+import os
+
+
+class Queue(object):
+    """Implements a Queue using a Python list.
+    Internally the queue is stored as plain Python list.
+    The front of the queue is at list[0] and rear is at list[n]
+    _data is a private variable inside each queue instance and shouldn't
+    be accessed from outside the queue (eg, don't do q._data.dequeue(), you should
+    be using q.dequeue()
+    """
+
+    def __init__(self):
+        self._data = []
+
+    def enqueue(self, item):
+        """Add an item onto the rear of the queue."""
+        # ---start student section---
+        self._data.append(item)
+        # ===end student section===
+
+    def dequeue(self):
+        """Remove an item from the front of the queue and return it.
+        Raise IndexError if empty."""
+        if self.is_empty():
+            raise IndexError('Can\'t dequeue from an empty queue!')
+        else:
+            # ---start student section---
+            return self._data.pop(0)
+            # ===end student section===
+
+    def is_empty(self):
+        """ Returns True if the queue is empty """
+        return len(self) == 0
+
+    def __len__(self):
+        """ Returns the length of the queue """
+        return len(self._data)
+
+    def __str__(self):
+        """ Returns a simply string showing the Queue """
+        return "Front -> " + repr(self._data) + " <- Rear"
+
+    def __repr__(self):
+        """ Returns a representation, simply the __str__
+        This is useful for displaying the Queue in the shell
+        """
+        return "Front-> " + repr(self._data) + " <-Rear"
+
